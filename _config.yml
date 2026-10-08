@@ -4,6 +4,7 @@ description: ""
 url: "https://daniel0825-dy.github.io"
 baseurl: ""
 lang: ko
+timezone: Asia/Seoul
 color_scheme: github
 permalink: "/posts/:title/"
 github_username: daniel0825-dy

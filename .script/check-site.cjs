@@ -34,6 +34,8 @@ function visit(dir) {
 visit(root);
 assert.deepEqual(missing, [], 'Broken internal resource/link paths');
 const preview = fs.readFileSync(path.join(root, 'posts/research-style-preview/index.html'), 'utf8');
+assert(preview.includes('Oct 9, 2026'), 'Publication date must remain October 9 in UTC build environments');
+assert(fs.readFileSync(path.join(root, 'index.html'), 'utf8').includes('>2026.10.09</time>'), 'List date must use the configured Korean timezone');
 for (const marker of ['<table>', 'class="image-caption"', 'class="source"', 'class="footnotes"', '\\[g = \\frac', 'language-mermaid', 'research-content.js']) assert(preview.includes(marker), 'Missing preview element: ' + marker);
 assert.equal((preview.match(/language-mermaid/g) || []).length, 3); // two blocks + include selector
 assert(!fs.readFileSync(path.join(root, 'index.html'), 'utf8').includes('본문 너비 안에서 줄바꿈됩니다'), 'Main page must not embed full post bodies');

@@ -15,6 +15,7 @@
 | 파일 | 역할 및 변경 이유 |
 |---|---|
 | `_sass/kagami.scss` | 기존 스타일 뒤에 공통 리서치 스타일 추가 |
+| `_config.yml`, `Gemfile` | 한국 시간대로 게시 날짜 통일, Windows에서만 사용하는 시간대 데이터 의존성 추가 |
 | `_sass/kagami/_research.scss` | 제목 계층, 한국어, 문단, 표, 코드, 인용, 각주, 출처, 이미지·캡션 및 반응형 규칙 |
 | `_layouts/post-list.html` | 날짜를 time 요소로 분리하고 분류 탐색을 추가, 검색용 본문 제거 |
 | `_includes/taxonomy-nav.html` | 기존 분류 3개·태그 4개의 탐색 링크 |
@@ -32,7 +33,7 @@
 | `.script/check-site.cjs` | 빌드 산출물의 내부 링크·리소스·색인·예시 요소 검사 |
 | `.github/instructions/task03-report.md` | 이 작업의 상세 결과 보고 |
 
-기존 게시글·샘플 파일을 삭제하지 않았다. `_config.yml`, Gemfile, 기존 CSS·폰트 경로, 서브모듈 고정 커밋과 분류·태그 체계를 유지했다.
+기존 게시글·샘플 파일을 삭제하지 않았다. 기존 CSS·폰트 경로, 서브모듈 고정 커밋과 분류·태그 체계를 유지했다. `_config.yml`에는 `timezone: Asia/Seoul` 한 항목만 추가했다. 첫 배포 검사에서 UTC 환경의 날짜가 로컬보다 하루 전으로 표시되는 문제를 확인했기 때문에 한국 시간으로 통일했다. Windows에는 시스템 시간대 데이터가 없으므로 Gemfile에 Windows 한정 `tzinfo-data` 의존성만 추가했다.
 
 ## 3. 새로 추가·개선한 기능
 
