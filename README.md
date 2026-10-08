@@ -227,6 +227,34 @@ Kagami is also optimized for high-res image display:
 
 And the retina image will be scaled to half of it's original size in pixels.
 
+## 리서치 게시글 작성 안내
+
+게시글은 `_posts/YYYY-MM-DD-slug.md`, 이미지는 `assets/images/`에 저장합니다.
+기존 분류(독후감·칼럼·마인드맵) 중 하나와 태그(기업분석·산업분석·기술분석·아이디어)를 지정합니다.
+일반 게시 작업에는 CSS나 레이아웃 수정이 필요하지 않습니다.
+
+```yaml
+layout: post
+title: "칼럼 제목"
+date: 2026-10-09 09:00:00 +0900
+categories: [칼럼]
+tags: [기술분석]
+description: "목록에 표시할 짧은 요약"
+```
+
+- 글 제목은 front matter에 적고 본문은 `##`와 `###`로 계층을 나눕니다. 본문 `#`도 지원합니다.
+- 표는 일반 Markdown 표로 작성합니다. 좁은 화면에서는 표 영역만 가로 스크롤됩니다.
+- 이미지는 `![대체 설명]({{ '/assets/images/파일명.png' | relative_url }})`로 넣습니다.
+- 캡션 문단 바로 다음 줄에 `{:.image-caption}`, 출처 문단 다음 줄에 `{:.source}`를 적습니다.
+- 각주는 `본문[^ref]`와 `[^ref]: 출처 설명`으로 작성합니다.
+- 수식이 필요하면 `mathjax: true`를 추가하고 `$$ ... $$`를 사용합니다.
+- 도식이 필요하면 `mermaid: true`를 추가하고 `mermaid` 코드 블록을 사용합니다. 기존 라이브러리를 사용하며 별도 삽입이 필요 없습니다.
+- 자동 목차는 보류입니다. 제목을 작성하는 것만으로 목차가 생성되지는 않습니다.
+
+전체 예시는 `_posts/2026-10-09-research-style-preview.md`에 있습니다. 예시 수치는 가상 값입니다.
+본문 검색 색인은 Jekyll 빌드 시 `search.json`으로 생성되며 검색을 시작할 때 한 번만 불러옵니다.
+색인을 불러오지 못하면 제목·요약·분류·태그 검색을 계속 제공합니다.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at <https://github.com/kamikat/jekyll-theme-kagami>. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.

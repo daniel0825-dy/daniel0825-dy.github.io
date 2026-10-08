@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Ferarum Proelia
-tag: Lorem
 ---
 
 Lorem markdownum lumina qua versus temeraria fecerat. Modo iuvenali nubila.

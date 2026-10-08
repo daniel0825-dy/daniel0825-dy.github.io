@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" role="img" aria-labelledby="title desc">
+  <title id="title">리서치 작성 과정 예시</title><desc id="desc">질문 설정, 자료 확인, 결론 작성의 세 단계</desc>
+  <rect width="900" height="300" rx="12" fill="#f1f5f9"/>
+  <g fill="#fff" stroke="#cbd5e1" stroke-width="2"><rect x="40" y="80" width="220" height="140" rx="8"/><rect x="340" y="80" width="220" height="140" rx="8"/><rect x="640" y="80" width="220" height="140" rx="8"/></g>
+  <g stroke="#ff7429" stroke-width="4" fill="none"><path d="M280 150h40l-12-10m12 10-12 10"/><path d="M580 150h40l-12-10m12 10-12 10"/></g>
+  <g font-family="sans-serif" font-size="26" text-anchor="middle" fill="#334155"><text x="150" y="160">질문 설정</text><text x="450" y="160">자료 확인</text><text x="750" y="160">결론 작성</text></g>
+</svg>

@@ -1,0 +1,72 @@
+// Loaded after the original Kagami rules; existing asset paths are preserved.
+[lang^="ko"] { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; line-height: 1.8; }
+body { font-weight: 400; }
+.site-nav { align-items: flex-start; }
+a:focus-visible, input:focus-visible { outline: 2px solid #ff7429; outline-offset: 4px; }
+.post-title { line-height: 1.35; }
+[lang^="ko"] .post-item-link, [lang^="ko"] .post-description, .post[lang^="ko"] .post-content { word-break: keep-all; overflow-wrap: anywhere; }
+.post .post-header { margin-top: 80px; margin-bottom: 64px; }
+.post-content {
+  line-height: 1.85;
+  p, ul, ol, blockquote, pre, .table-scroll { margin: 1.4em 0; }
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.4; font-weight: 600; margin: 2em 0 .75em; scroll-margin-top: 24px;
+    &::before { content: none; }
+    & + * { margin-top: 0; }
+  }
+  h1 { font-size: 1.8em; }
+  h2 { font-size: 1.45em; padding-bottom: .35em; border-bottom: 1px solid #e2e8f0; }
+  h3 { font-size: 1.2em; }
+  li { margin: .35em 0; }
+  li > p { margin: .5em 0; }
+  a { text-decoration: underline; text-underline-offset: .2em; border-bottom: none; }
+  a:hover { border-bottom: none; }
+  blockquote {
+    border-left: 3px solid #a6b4c4; padding: .6em 1.1em; background: #f7f9fb; font-style: normal; color: #475569;
+    p { margin: .5em 0; }
+    cite { margin-top: .5em; white-space: normal; }
+  }
+  code { display: inline; overflow-wrap: anywhere; }
+  pre {
+    margin-left: 0; margin-right: 0; padding: 18px; border: 1px solid #e2e8f0; border-radius: 5px; color: #334155;
+    code { display: block; margin: 0; padding: 0; overflow-x: auto; white-space: pre; overflow-wrap: normal; line-height: 1.65; }
+  }
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { display: block; overflow-x: auto; width: 100%; border-collapse: collapse; font-size: .9em; line-height: 1.6; }
+  .table-scroll table { display: table; overflow: visible; }
+  th, td { padding: .7em .9em; border: 1px solid #cbd5e1; min-width: 100px; vertical-align: top; }
+  th { background: #f1f5f9; font-weight: 600; }
+  tbody tr:nth-child(even) { background: #fafbfd; }
+  img { display: block; max-width: 100%; height: auto; margin: 1.4em auto; }
+  figure { margin: 1.4em 0; }
+  figcaption, .image-caption { color: #64748b; text-align: center; font-size: .85em; margin-top: -.8em; }
+  .source { color: #64748b; font-size: .85em; }
+  mark { padding: .1em .2em; }
+  .footnotes { border-top: 1px solid #e2e8f0; margin-top: 3em; padding-top: 1em; font-size: .85em; }
+  .footnote { font-size: .8em; }
+  .MathJax_Display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: .4em 0; }
+  pre.mermaid { overflow-x: auto; text-align: center; background: transparent; border: none; padding: 0; }
+  .mermaid svg { max-width: 100%; height: auto; }
+}
+.post-footer { color: #64748b; }
+.post-footer .post-tags { float: none; clear: both; padding-top: 12px; }
+.taxonomy-nav { font-size: .8em; line-height: 1.8; margin-bottom: 32px; }
+.taxonomy-group { display: flex; flex-wrap: wrap; gap: 6px 10px; margin: 8px 0; }
+.taxonomy-label { color: #64748b; min-width: 40px; }
+.taxonomy-nav a, .post-category { border-radius: 3px; padding: 1px 6px; background: #f1f5f9; }
+.taxonomy-nav a[aria-current="page"] { background: #ff7429; color: #fff; }
+.post-list-item { padding: 24px 0; margin: 0; border-bottom: 1px solid #e2e8f0; }
+.post-item-link { display: block; line-height: 1.5; font-size: 1.2em; font-weight: 500; overflow-wrap: anywhere; }
+.post-description { color: #475569; line-height: 1.7; }
+.post-item-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: .75em; font-variant-caps: normal; color: #64748b; }
+.post-list-item .post-item-cover, .post-list-item:hover .post-item-cover { transition: none; opacity: .03; }
+.credits { white-space: normal; }
+@media screen and (max-width: 679px) {
+  .site-nav { margin: 0; }
+  .post .post-header { margin-top: 48px; margin-bottom: 40px; }
+  .post-content { font-size: 17px; }
+  .post-content pre { padding: 14px; }
+  .post-content h1 { font-size: 1.65em; }
+  .post-title { font-size: 1.6em; }
+  .post-item-link { font-size: 1.1em; }
+}

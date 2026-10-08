@@ -1,14 +1,13 @@
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-<script type="text/javascript">
-  (function () {
-    mermaid.init({ startOnLoad: true }, "pre code.language-mermaid", function () {
-      const codeBlock = document.querySelector('code.language-mermaid');
-      codeBlock.style.backgroundColor = 'initial';
-
-      const preBlock = codeBlock.parentNode;
-      preBlock.style.border = 'none';
-      preBlock.style.textAlign = 'center';
-      preBlock.style.backgroundColor = 'initial';
-    });
-  })();
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.0/dist/mermaid.esm.min.mjs';
+  const diagrams = Array.from(document.querySelectorAll('.post-content pre code.language-mermaid')).map(code => {
+    const block = code.parentElement;
+    block.textContent = code.textContent;
+    block.classList.add('mermaid');
+    return block;
+  });
+  if (diagrams.length) {
+    mermaid.initialize({ startOnLoad: false, securityLevel: 'strict' });
+    await mermaid.run({ nodes: diagrams });
+  }
 </script>

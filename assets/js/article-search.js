@@ -8,9 +8,29 @@
   if (!list || !status || !empty || !pagination) return;
   var pageSize = 10;
   var currentPage = 1;
+  var indexRequest = null;
+  var indexReady = false;
+  var indexFailed = false;
+  var searchTimer;
+  function normalize(text) { return text.normalize('NFKC').toLocaleLowerCase(); }
   var items = Array.prototype.map.call(list.querySelectorAll('.post-list-item'), function (element) {
-    return { element: element, text: (element.getAttribute('data-search') || '').normalize('NFKC').toLocaleLowerCase() };
+    return { element: element, url: element.getAttribute('data-url'), text: normalize(element.getAttribute('data-search') || '') };
   });
+  function loadIndex() {
+    if (indexRequest) return;
+    indexRequest = fetch(list.getAttribute('data-search-index')).then(function (response) {
+      if (!response.ok) throw new Error('Search index unavailable');
+      return response.json();
+    }).then(function (posts) {
+      var texts = new Map(posts.map(function (post) { return [post.url, normalize(post.text)]; }));
+      items.forEach(function (item) { if (texts.has(item.url)) item.text = texts.get(item.url); });
+      indexReady = true;
+      render();
+    }).catch(function () {
+      indexFailed = true;
+      render();
+    });
+  }
   function pageUrl(page) {
     var url = new URL(window.location.href);
     if (page === 1) url.searchParams.delete('page');
@@ -39,6 +59,7 @@
   }
   function render() {
     var query = input ? input.value.normalize('NFKC').trim().toLocaleLowerCase() : '';
+    if (query && !indexReady && !indexFailed) loadIndex();
     var terms = query ? query.split(/\s+/) : [];
     var matches = items.filter(function (item) {
       return terms.every(function (term) { return item.text.indexOf(term) !== -1; });
@@ -51,13 +72,15 @@
     visible.forEach(function (item) { item.element.hidden = false; });
     status.hidden = !query;
     status.textContent = matches.length ? '검색 결과 ' + matches.length + '개' : '검색 결과가 없습니다.';
-    empty.hidden = visible.length > 0 || (query && matches.length === 0);
+    if (query && !indexReady) status.textContent = indexFailed ? '본문 검색을 불러오지 못했습니다. 제목·요약·분류·태그로 검색합니다.' : '본문 검색 데이터를 불러오는 중입니다.';
+    list.setAttribute('aria-busy', String(!!query && !indexReady && !indexFailed));
+    empty.hidden = visible.length > 0 || (!!query && matches.length === 0);
     pagination.textContent = '';
     if (currentPage > 1) addLink(currentPage - 1, '‹', '이전 페이지');
-    var numbers = [];
-    for (var page = 1; page <= totalPages; page += 1) {
-      if (totalPages <= 7 || page <= 3 || page === totalPages || Math.abs(page - currentPage) <= 1) numbers.push(page);
-    }
+    var candidates = totalPages <= 7 ? [1, 2, 3, 4, 5, 6, 7] : [1, 2, 3, currentPage - 1, currentPage, currentPage + 1, totalPages];
+    var numbers = candidates.filter(function (page, index) {
+      return page >= 1 && page <= totalPages && candidates.indexOf(page) === index;
+    }).sort(function (a, b) { return a - b; });
     numbers.forEach(function (page, index) {
       if (index && page - numbers[index - 1] > 1) {
         var gap = document.createElement('span');
@@ -79,12 +102,13 @@
   }
   if (input) {
     function search() {
+      clearTimeout(searchTimer);
       currentPage = 1;
       render();
       window.history.replaceState(null, '', pageUrl(currentPage));
     }
     input.form.addEventListener('submit', function (event) { event.preventDefault(); search(); });
-    input.addEventListener('input', search);
+    input.addEventListener('input', function () { clearTimeout(searchTimer); searchTimer = setTimeout(search, 150); });
     input.addEventListener('search', search);
   }
   window.addEventListener('popstate', restore);
