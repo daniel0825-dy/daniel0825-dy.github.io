@@ -39,4 +39,8 @@ assert(fs.readFileSync(path.join(root, 'index.html'), 'utf8').includes('>2026.10
 for (const marker of ['<table>', 'class="image-caption"', 'class="source"', 'class="footnotes"', '\\[g = \\frac', 'language-mermaid', 'research-content.js']) assert(preview.includes(marker), 'Missing preview element: ' + marker);
 assert.equal((preview.match(/language-mermaid/g) || []).length, 3); // two blocks + include selector
 assert(!fs.readFileSync(path.join(root, 'index.html'), 'utf8').includes('본문 너비 안에서 줄바꿈됩니다'), 'Main page must not embed full post bodies');
+const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+assert(!home.includes('분 읽기'), 'Reading time must not be displayed');
+assert(!home.includes('taxonomy-nav'), 'Button filters must not be displayed');
+assert(!home.includes('class="post-category" href='), 'Category labels must not be filter buttons');
 console.log(`PASS: ${pages} HTML pages, ${references} internal resources/links, ${index.length} search entries, report elements`);

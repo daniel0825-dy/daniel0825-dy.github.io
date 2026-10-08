@@ -50,11 +50,6 @@ a:focus-visible, input:focus-visible { outline: 2px solid #ff7429; outline-offse
 }
 .post-footer { color: #64748b; }
 .post-footer .post-tags { float: none; clear: both; padding-top: 12px; }
-.taxonomy-nav { font-size: .8em; line-height: 1.8; margin-bottom: 32px; }
-.taxonomy-group { display: flex; flex-wrap: wrap; gap: 6px 10px; margin: 8px 0; }
-.taxonomy-label { color: #64748b; min-width: 40px; }
-.taxonomy-nav a, .post-category { border-radius: 3px; padding: 1px 6px; background: #f1f5f9; }
-.taxonomy-nav a[aria-current="page"] { background: #ff7429; color: #fff; }
 .post-list-item { padding: 24px 0; margin: 0; border-bottom: 1px solid #e2e8f0; }
 .post-item-link { display: block; line-height: 1.5; font-size: 1.2em; font-weight: 500; overflow-wrap: anywhere; }
 .post-description { color: #475569; line-height: 1.7; }

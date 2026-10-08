@@ -3,7 +3,6 @@ layout: default
 ---
 
 {% include header.html %}
-{% include taxonomy-nav.html %}
 
 <p id="article-search-status" class="article-search-status" role="status" aria-live="polite" hidden></p>
 <p id="article-page-empty" class="article-page-empty" role="status" hidden>이 페이지에는 아직 게시글이 없습니다.</p>
@@ -28,7 +27,7 @@ layout: default
   {% assign posts = site.posts | where_exp: "post", "matched_paths contains post.path" %}
   {% endif %}
   {% for post in posts %}
-  <li class="post-list-item" data-url="{{ post.url | relative_url }}" data-tags="{{ post.tags | join: ' ' | escape }}"{% if page.search %} data-search="{{ post.title | escape }} {{ post.description | strip_html | escape }} {{ post.categories | join: ' ' | escape }} {{ post.tags | join: ' ' | escape }}"{% endif %}>
+  <li class="post-list-item" data-url="{{ post.url | relative_url }}" data-taxonomy="{{ post.categories | concat: post.tags | jsonify | escape }}"{% if page.search %} data-search="{{ post.title | escape }} {{ post.description | strip_html | escape }} {{ post.categories | join: ' ' | escape }} {{ post.tags | join: ' ' | escape }}"{% endif %}>
     {% if post.cover_url %}
     <div class="post-item-cover" style="background-image: url('{{ post.cover_url }}')"></div>
     {% endif %}
@@ -41,16 +40,7 @@ layout: default
       {% endif %}
       <div class="post-item-meta">
         <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
-        {% capture lang %}{{ post.lang | default: site.lang | default: "en" }}{% endcapture %}
-        {% if lang == "en" %}
-        {% capture words %}{{ post.content | strip_html | number_of_words  }}{% endcapture %}
-        {% else %}
-        {% capture words %}{{ post.content | strip_html | size }}{% endcapture %}
-        {% endif %}
-        {% unless words contains "-" %}
-        <span>{{ words | plus: 250 | divided_by: 250 }}분 읽기</span>
-        {% endunless %}
-        {% for category in post.categories %}<a class="post-category" href="{{ category | url_encode | prepend: '/categories/' | append: '/' | relative_url }}">{{ category | escape }}</a>{% endfor %}
+        {% for category in post.categories %}<span class="post-category">{{ category | escape }}</span>{% endfor %}
       </div>
     </div>
   </li>

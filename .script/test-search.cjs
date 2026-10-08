@@ -21,7 +21,7 @@ function harness(count, failed = false) {
   input.form = new Element();
   const list = elements['article-list'];
   list.attrs['data-search-index'] = '/search.json';
-  list.children = Array.from({length: count}, (_, i) => new Element({'data-search': '제목 ' + i, 'data-url': '/posts/' + i + '/'}));
+  list.children = Array.from({length: count}, (_, i) => new Element({'data-search': '제목 ' + i + (i === 0 ? ' 칼럼 기업분석' : ''), 'data-url': '/posts/' + i + '/', 'data-taxonomy': JSON.stringify(i === 20 ? ['칼럼', '기술분석'] : i === 21 ? ['칼럼', '기업분석'] : i === 22 ? ['독후감', '기업분석'] : [])}));
   let fetches = 0;
   const window = {location: {href: 'https://example.com/'}, addEventListener(name, fn) { this[name] = fn; }};
   window.history = Object.fromEntries(['pushState', 'replaceState'].map(name => [name, (_, __, url) => { window.location.href = new URL(url, window.location.href).href; }]));
@@ -43,6 +43,15 @@ async function run() {
   h.window.location.href = 'https://example.com/?page=9'; h.window.popstate();
   assert.equal(h.visible().length, 1);
   assert(h.elements['article-pagination'].children.some(x => x.textContent === '…'));
+  h.search('#칼럼'); assert.equal(h.visible().length, 2); assert.equal(h.fetches(), 0);
+  h.search('#컬럼'); assert.equal(h.visible().length, 2);
+  h.search('#기업분석'); assert.equal(h.visible().length, 2);
+  h.search('#칼럼 #기업분석'); assert.equal(h.visible().length, 1); assert.equal(h.visible()[0].attrs['data-url'], '/posts/21/');
+  h.search('#기업'); assert.equal(h.visible().length, 0);
+  h.search('#'); assert.equal(h.visible().length, 0);
+  h.search('#칼럼 본문전용검색어');
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(h.visible().length, 1); assert.equal(h.visible()[0].attrs['data-url'], '/posts/20/');
   h.search('본문전용검색어');
   await new Promise(resolve => setImmediate(resolve));
   assert.equal(h.fetches(), 1);
@@ -55,6 +64,7 @@ async function run() {
   const fallback = harness(21, true); fallback.search('제목 20');
   await new Promise(resolve => setImmediate(resolve));
   assert.equal(fallback.visible().length, 1); assert.match(fallback.elements['article-search-status'].textContent, /불러오지/);
-  console.log('PASS: pagination, history, reserved pages, lazy full-text search, index reuse, empty results and network fallback');
+  fallback.search('#기업분석'); assert.equal(fallback.visible().length, 0); assert(!fallback.elements['article-search-status'].textContent.includes('불러오지'));
+  console.log('PASS: pagination, history, hashtag exact matching and aliases, combined filters/full-text search, index reuse, empty results and network fallback');
 }
 run().catch(error => { console.error(error); process.exitCode = 1; });

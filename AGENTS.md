@@ -3,6 +3,7 @@
 - 설명과 작업 보고는 한국어로 작성한다.
 - 게시글은 루트 `_posts/YYYY-MM-DD-slug.md`에 저장한다. YAML front matter에 `layout: post`, `title`, `date`를 작성하고 필요한 경우 태그를 지정한다.
 - 분류·태그 기준은 `_data/taxonomy.yml`을 따른다. 새 게시글의 `categories`에는 독후감·칼럼·마인드맵 중 하나를 지정하며, `tags`는 기업분석·산업분석·기술분석·아이디어 중 해당하는 값만 지정한다. 예: `categories: [칼럼]`, `tags: [기업분석, 아이디어]`.
+- 목록의 분류·태그 탐색은 검색창의 `#칼럼`, `#기업분석` 형식으로 제공한다. 여러 해시태그와 일반 검색어는 공백으로 조합하며 모두 충족하는 글을 표시한다. `#컬럼`은 `#칼럼`의 검색 별칭이다. 버튼형 필터와 읽기 시간 표시는 사용하지 않는다.
 - 기존 샘플은 분류 미지정으로 보존한다. 분류·태그를 추가하거나 이름을 바꿀 때 목록 데이터와 해당 목록 페이지도 함께 갱신한다.
 - 게시글 이미지는 `assets/images/`에 저장한다. 본문 이미지 링크는 `{{ '/assets/images/파일명.png' | relative_url }}` 형식을 사용한다.
 - 게시글 작성은 Markdown과 front matter만으로 진행한다. 리서치 서식은 README.md의 작성 안내와 `2026-10-09-research-style-preview.md`를 참고한다. 표는 일반 Markdown 표, 캡션은 `{:.image-caption}`, 출처는 `{:.source}`, 각주는 `[^이름]`을 사용한다. 수식·도식이 있는 글에만 `mathjax: true`·`mermaid: true`를 지정한다. 목차는 현재 보류 상태다.

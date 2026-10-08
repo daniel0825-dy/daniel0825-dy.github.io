@@ -14,7 +14,7 @@
   var searchTimer;
   function normalize(text) { return text.normalize('NFKC').toLocaleLowerCase(); }
   var items = Array.prototype.map.call(list.querySelectorAll('.post-list-item'), function (element) {
-    return { element: element, url: element.getAttribute('data-url'), text: normalize(element.getAttribute('data-search') || '') };
+    return { element: element, url: element.getAttribute('data-url'), taxonomy: JSON.parse(element.getAttribute('data-taxonomy') || '[]').map(normalize), text: normalize(element.getAttribute('data-search') || '') };
   });
   function loadIndex() {
     if (indexRequest) return;
@@ -59,10 +59,16 @@
   }
   function render() {
     var query = input ? input.value.normalize('NFKC').trim().toLocaleLowerCase() : '';
-    if (query && !indexReady && !indexFailed) loadIndex();
     var terms = query ? query.split(/\s+/) : [];
+    var needsBody = terms.some(function (term) { return term.charAt(0) !== '#'; });
+    if (needsBody && !indexReady && !indexFailed) loadIndex();
     var matches = items.filter(function (item) {
-      return terms.every(function (term) { return item.text.indexOf(term) !== -1; });
+      return terms.every(function (term) {
+        if (term.charAt(0) !== '#') return item.text.indexOf(term) !== -1;
+        var label = term.slice(1);
+        if (label === '컬럼') label = '칼럼';
+        return item.taxonomy.indexOf(label) !== -1;
+      });
     });
     // Reserve pages 1-3 even before enough posts are available.
     var totalPages = Math.max(3, Math.ceil(matches.length / pageSize));
@@ -72,8 +78,8 @@
     visible.forEach(function (item) { item.element.hidden = false; });
     status.hidden = !query;
     status.textContent = matches.length ? '검색 결과 ' + matches.length + '개' : '검색 결과가 없습니다.';
-    if (query && !indexReady) status.textContent = indexFailed ? '본문 검색을 불러오지 못했습니다. 제목·요약·분류·태그로 검색합니다.' : '본문 검색 데이터를 불러오는 중입니다.';
-    list.setAttribute('aria-busy', String(!!query && !indexReady && !indexFailed));
+    if (needsBody && !indexReady) status.textContent = indexFailed ? status.textContent + ' 본문 검색을 불러오지 못했습니다. 제목·요약·분류·태그로 검색합니다.' : '본문 검색 데이터를 불러오는 중입니다.';
+    list.setAttribute('aria-busy', String(needsBody && !indexReady && !indexFailed));
     empty.hidden = visible.length > 0 || (!!query && matches.length === 0);
     pagination.textContent = '';
     if (currentPage > 1) addLink(currentPage - 1, '‹', '이전 페이지');

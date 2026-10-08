@@ -1,5 +1,7 @@
 # TASK 03 결과 보고
 
+이 문서는 TASK 03 당시의 구현 기록이다. 후속 사용자 요청으로 읽기 시간과 버튼형 분류·태그 필터를 제거했다. 현재는 검색창에서 `#칼럼`, `#기업분석`으로 필터링하며, `#컬럼`은 `#칼럼`으로 인식한다. 상세 사용법은 README.md를 따른다.
+
 ## 1. 기존 디자인의 문제점
 
 - `core.scss → kagami.scss → reset/utility/typeface/layout/typography/search` 순서로 CSS가 적용됐다. 한국어 `lang: ko`의 전용 폰트·줄 간격 규칙은 없었다.
