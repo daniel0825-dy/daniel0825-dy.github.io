@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Sedent in Vias Infra Manus rem Clarae
-tags: Lore
 ---
 
 Lorem markdownum quem, librato monte vidi haec studiis, artus facit atque! Omnia

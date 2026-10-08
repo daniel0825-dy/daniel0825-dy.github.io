@@ -2,6 +2,8 @@
 
 - 설명과 작업 보고는 한국어로 작성한다.
 - 게시글은 루트 `_posts/YYYY-MM-DD-slug.md`에 저장한다. YAML front matter에 `layout: post`, `title`, `date`를 작성하고 필요한 경우 태그를 지정한다.
+- 분류·태그 기준은 `_data/taxonomy.yml`을 따른다. 새 게시글의 `categories`에는 독후감·칼럼·마인드맵 중 하나를 지정하며, `tags`는 기업분석·산업분석·기술분석·아이디어 중 해당하는 값만 지정한다. 예: `categories: [칼럼]`, `tags: [기업분석, 아이디어]`.
+- 기존 샘플은 분류 미지정으로 보존한다. 분류·태그를 추가하거나 이름을 바꿀 때 목록 데이터와 해당 목록 페이지도 함께 갱신한다.
 - 게시글 이미지는 `assets/images/`에 저장한다. 본문 이미지 링크는 `{{ '/assets/images/파일명.png' | relative_url }}` 형식을 사용한다.
 - 명시적인 요청 없이 CSS, `_sass/`, `_layouts/`, `_includes/`, `_config.yml`, Gemfile, gemspec, 배포 설정을 수정하지 않는다.
 - Kagami 디자인과 기존 `assets/styles/`, `assets/font/` 경로를 보존한다. 기존 인라인 JavaScript를 임의로 이동하지 않는다.

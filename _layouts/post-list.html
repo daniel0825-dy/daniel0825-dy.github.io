@@ -7,29 +7,27 @@ layout: default
 <p id="article-search-status" class="article-search-status" role="status" aria-live="polite" hidden></p>
 <p id="article-page-empty" class="article-page-empty" role="status" hidden>이 페이지에는 아직 게시글이 없습니다.</p>
 <ul class="post-list" id="article-list">
-  {% for rule in page.filter %}
   {% assign posts = site.posts %}
+  {% if page.filter %}
+  {% assign matched_paths = '' | split: ',' %}
+  {% for rule in page.filter %}
+  {% assign filtered_posts = site.posts %}
   {% if rule.by_tag %}
-  {% assign posts = posts | where_exp: "post", "post.tags contains rule.by_tag" %}
+  {% assign filtered_posts = filtered_posts | where_exp: "post", "post.tags contains rule.by_tag" %}
   {% endif %}
   {% if rule.by_category %}
-  {% assign posts = posts | where_exp: "post", "post.category == rule.by_category" %}
+  {% assign filtered_posts = filtered_posts | where_exp: "post", "post.categories contains rule.by_category" %}
   {% endif %}
   {% if rule.by_expression %}
-  {% assign posts = posts | where_exp: "post", rule.by_expression %}
+  {% assign filtered_posts = filtered_posts | where_exp: "post", rule.by_expression %}
+  {% endif %}
+  {% assign filtered_paths = filtered_posts | map: 'path' %}
+  {% assign matched_paths = matched_paths | concat: filtered_paths %}
+  {% endfor %}
+  {% assign posts = site.posts | where_exp: "post", "matched_paths contains post.path" %}
   {% endif %}
   {% for post in posts %}
-  {% assign posts = posts | append: " " | append: post.path %}
-  {% endfor %}
-  {% endfor %}
-  {% if posts %}
-  {% assign posts = posts | split: " " | sort | uniq %}
-  {% assign posts = site.posts | where_exp: "post", "posts contains post.path" %}
-  {% else %}
-  {% assign posts = site.posts %}
-  {% endif %}
-  {% for post in posts %}
-  <li class="post-list-item" data-tags="{{ post.tags | join: " " }}"{% if page.search %} data-search="{{ post.title | escape }} {{ post.description | strip_html | escape }} {{ post.tags | join: ' ' | escape }} {{ post.content | strip_html | normalize_whitespace | escape }}"{% endif %}>
+  <li class="post-list-item" data-tags="{{ post.tags | join: " " }}"{% if page.search %} data-search="{{ post.title | escape }} {{ post.description | strip_html | escape }} {{ post.categories | join: ' ' | escape }} {{ post.tags | join: ' ' | escape }} {{ post.content | strip_html | normalize_whitespace | escape }}"{% endif %}>
     {% if post.cover_url %}
     <div class="post-item-cover" style="background-image: url('{{ post.cover_url }}')"></div>
     {% endif %}

@@ -1,5 +1,9 @@
 <header class="post-header">
+  {% if page.layout == 'post' %}
+  <span class="site-title">{{ page.categories | first | default: '분류 미지정' | escape }}</span>
+  {% else %}
   <a class="site-title" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+  {% endif %}
   {% if page.search %}
   <div class="articles-heading">
     <h1 class="post-title baseline-fix" itemprop="name headline">{{ page.title | escape | replace: "​", "<wbr>" }}</h1>

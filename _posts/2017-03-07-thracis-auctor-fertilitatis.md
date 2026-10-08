@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Thracis Auctor Fertilitatis
-tags: Lorem
 cover_url: https://s2.banana.moe/unsplash_colle/romain-vignes-53940.jpg
 ---
 
