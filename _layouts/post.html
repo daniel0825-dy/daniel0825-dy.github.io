@@ -13,7 +13,8 @@ layout: default
   <footer class="post-footer">
     <div class="post-meta">
       {% if page.date %} <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time> {% endif %}
-      {% if page.author %} by <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author | escape }}</span></span> {% endif %}
+      {% assign post_author = page.author | default: site.author %}
+      {% if post_author %} by <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ post_author | escape }}</span></span> {% endif %}
     </div>
 
     {% if page.tags.size > 0 %}
