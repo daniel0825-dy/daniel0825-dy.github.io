@@ -1,20 +1,20 @@
-title: My Awesome Blog
-author: GitHub User
-email: your-email@domain.com
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "/jekyll-theme-kagami"
-lang: en # site language (en/ja/zh-Hans/zh-Hant)
-color_scheme: github # this specifies color scheme for syntax highlighting
-github_username: kamikat
-twitter_username: kamikat_bot
-instagram_username: kamikat_bot
+title: Idea Repository
+author: dany
+description: ""
+url: "https://daniel0825-dy.github.io"
+baseurl: ""
+lang: ko
+color_scheme: github
+permalink: "/posts/:title/"
+github_username: daniel0825-dy
 
-# Build settings
+# 빌드 설정: 저장소에 포함된 Kagami 파일을 직접 사용한다.
 markdown: kramdown
-theme: jekyll-theme-kagami
+plugins:
+  - jekyll-feed
 exclude:
   - Gemfile
   - Gemfile.lock
+  - AGENTS.md
+  - README.md
+  - jekyll-theme-kagami.gemspec
