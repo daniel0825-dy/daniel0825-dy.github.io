@@ -2,13 +2,10 @@
 layout: default
 ---
 
-{% include site-nav.html %}
-
 {% include header.html %}
 
-{% if page.search %}
 <p id="article-search-status" class="article-search-status" role="status" aria-live="polite" hidden></p>
-{% endif %}
+<p id="article-page-empty" class="article-page-empty" role="status" hidden>이 페이지에는 아직 게시글이 없습니다.</p>
 <ul class="post-list" id="article-list">
   {% for rule in page.filter %}
   {% assign posts = site.posts %}
@@ -60,6 +57,5 @@ layout: default
   </li>
   {% endfor %}
 </ul>
-{% if page.search %}
+<nav id="article-pagination" class="article-pagination" aria-label="게시글 목록 페이지"></nav>
 <script src="{{ '/assets/js/article-search.js' | relative_url }}" defer></script>
-{% endif %}
