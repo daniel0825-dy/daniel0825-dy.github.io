@@ -16,6 +16,12 @@
   gap: 8px;
   font-size: 0.8em;
 
+  .article-search-icon {
+    display: flex;
+    align-items: center;
+    cursor: text;
+  }
+
   input {
     width: 210px;
     max-width: 100%;
@@ -23,13 +29,16 @@
     padding: 8px 10px;
     color: $content-color;
     background: $background-color;
-    border: 1px solid darken($border-color, 15%);
-    border-radius: 4px;
+    appearance: none;
+    border: 0;
+    border-bottom: 1px solid darken($border-color, 25%);
+    border-radius: 0;
     font: inherit;
 
     &:focus {
-      outline: 2px solid $content-color;
-      outline-offset: 2px;
+      outline: none;
+      border-bottom: 2px solid $content-color;
+      padding-bottom: 7px;
     }
   }
 }

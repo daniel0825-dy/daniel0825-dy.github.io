@@ -4,8 +4,14 @@
   <div class="articles-heading">
     <h1 class="post-title baseline-fix" itemprop="name headline">{{ page.title | escape | replace: "​", "<wbr>" }}</h1>
     <form class="article-search" role="search" aria-label="게시글 검색">
-      <label for="article-search-input">검색</label>
-      <input id="article-search-input" type="search" placeholder="게시글 검색" autocomplete="off" aria-controls="article-list" aria-describedby="article-search-status">
+      <label for="article-search-input" class="article-search-icon">
+        <!-- Feather search icon (MIT): assets/licenses/feather-MIT.txt -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </label>
+      <input id="article-search-input" type="search" aria-label="게시글 검색" placeholder="게시글 검색" autocomplete="off" aria-controls="article-list" aria-describedby="article-search-status">
     </form>
   </div>
   {% else %}
