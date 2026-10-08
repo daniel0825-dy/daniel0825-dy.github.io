@@ -1,3 +1,7 @@
+.articles-header .site-title {
+  margin-left: -$spacing-unit / 2;
+}
+
 .articles-heading {
   display: flex;
   align-items: center;
@@ -97,6 +101,10 @@
 }
 
 @media screen and (max-width: 480px) {
+  .articles-header .site-title {
+    margin-left: 0;
+  }
+
   .articles-heading {
     flex-wrap: wrap;
     gap: $spacing-unit / 2;

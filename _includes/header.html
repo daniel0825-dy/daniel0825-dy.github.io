@@ -1,4 +1,4 @@
-<header class="post-header">
+<header class="post-header{% if page.search %} articles-header{% endif %}">
   {% if page.layout == 'post' %}
   <span class="site-title">{{ page.categories | first | default: '분류 미지정' | escape }}</span>
   {% else %}
