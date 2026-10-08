@@ -63,19 +63,19 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 2 * $spacing-unit;
+  gap: 6px;
+  margin-top: 3 * $spacing-unit;
 }
 
 .article-page-link, .article-page-gap {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 44px;
-  height: 44px;
+  min-width: 32px;
+  height: 32px;
   border-radius: 50%;
   color: #64748b;
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 
 .article-page-link[aria-current="page"] {
