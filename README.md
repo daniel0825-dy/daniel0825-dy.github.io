@@ -1,3 +1,52 @@
+# 블로그 저장소 구조
+
+이 저장소는 Kagami 테마를 유지하면서 루트를 Jekyll 사이트 소스로 사용합니다.
+기본 브랜치는 `master`이며, 이번 단계에서는 개인 설정과 배포 설정을 변경하지 않았습니다.
+
+- `_config.yml`: 기존 샘플 설정. 개인화는 다음 단계에서 수행합니다.
+- `index.md`, `about.md`: 홈과 소개 페이지입니다.
+- `_posts/`: 기존 샘플 게시글 4개와 향후 게시글의 저장 위치입니다.
+- `tags/`, `variables.md`: 기존 태그별 목록과 변수 확인 페이지를 보존합니다.
+- `assets/images/`: 게시글 이미지 저장 위치입니다.
+- `assets/styles/`, `assets/font/`: 기존 CSS와 아이콘 폰트 경로를 유지합니다.
+- `assets/js/`: 향후 JavaScript 파일용 자리입니다. 기존 인라인 스크립트는 그대로입니다.
+- `_layouts/`, `_includes/`, `_sass/`: Kagami 레이아웃, 공통 조각, 스타일 소스입니다.
+- `.github/workflows/`, `.github/instructions/`: 향후 자동화용 자리이며 워크플로는 아직 없습니다.
+- `AGENTS.md`: 게시글 작성 위치와 변경 범위 규칙입니다.
+- `Gemfile`, `jekyll-theme-kagami.gemspec`: 현재 로컬 테마 및 빌드 의존성 정의입니다.
+- `.gitmodules`: 필수 Sass 도구와 구문 강조 CSS의 서브모듈 정의입니다.
+- `.script/`, `.travis.yml`, `.ruby-version`: 기존 도구와 환경 기록을 보존합니다.
+- `LICENSE.txt`: 원본 테마 라이선스입니다.
+
+## 로컬 검증
+
+Ruby와 Bundler가 준비된 환경에서 저장소 루트를 기준으로 실행합니다.
+
+```sh
+git submodule update --init --recursive
+bundle install
+bundle exec jekyll build
+bundle exec jekyll serve
+```
+
+`_sass/scut/dist/_scut.scss`는 Sass 빌드에 필요하며,
+`assets/styles/highlighting/`는 코드 강조 색상에 필요합니다.
+향후 자동 배포에서는 이 서브모듈들을 함께 체크아웃해야 합니다.
+`.ruby-version`은 2.7.1, 기존 Travis 설정은 2.2를 지정하므로 환경 버전 정리는 다음 단계에서 검토합니다.
+
+## 다음 단계
+
+`title`, `author`, `email`, `description`, 소셜 계정, `lang`을 개인화합니다.
+사용자 사이트에 맞춰 `url: https://daniel0825-dy.github.io`와 `baseurl: ""`를 검토합니다.
+현재 `baseurl`은 원본의 `/jekyll-theme-kagami`를 그대로 유지하므로 실제 사이트 게시 전에 수정이 필요합니다.
+`timezone: Asia/Seoul`, `theme` 및 배포 방식, RSS 생성 설정도 검토합니다.
+`exclude`에는 `AGENTS.md`, `README.md`, gemspec 등 비공개용 작업 문서의 빌드 제외 여부를 검토합니다.
+현재 설정은 원본 그대로이며, RSS 링크는 있지만 저장소 자체에는 feed.xml이나 피드 플러그인 활성화 설정이 없습니다.
+외부 이미지, Google Fonts, 선택적으로 쓰이는 MathJax·Mermaid·댓글·분석 서비스는 기존 참조를 유지합니다.
+
+아래는 원본 테마의 설명입니다. 개발용 실행 경로만 루트 기준으로 수정했습니다.
+
+---
 # Kagami
 
 [![Build Status](https://travis-ci.org/kamikat/jekyll-theme-kagami.svg?branch=master)](https://travis-ci.org/kamikat/jekyll-theme-kagami)
@@ -186,7 +235,7 @@ Bug reports and pull requests are welcome on GitHub at <https://github.com/kamik
 
 To set up your environment to develop this theme, run `bundle install`.
 
-Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve -s example` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
+Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
 
 When your theme is released, only the files in `_layouts`, `_includes`, and `_sass` tracked with Git will be released.
 

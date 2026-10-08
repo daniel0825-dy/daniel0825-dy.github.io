@@ -2,5 +2,5 @@
 
 set -e
 
-echo "Buidling the example site..."
-bundle exec jekyll build --source example
+echo "루트 블로그를 빌드합니다..."
+bundle exec jekyll build
