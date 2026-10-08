@@ -6,7 +6,10 @@ layout: default
 
 {% include header.html %}
 
-<ul class="post-list">
+{% if page.search %}
+<p id="article-search-status" class="article-search-status" role="status" aria-live="polite" hidden></p>
+{% endif %}
+<ul class="post-list" id="article-list">
   {% for rule in page.filter %}
   {% assign posts = site.posts %}
   {% if rule.by_tag %}
@@ -29,7 +32,7 @@ layout: default
   {% assign posts = site.posts %}
   {% endif %}
   {% for post in posts %}
-  <li class="post-list-item" data-tags="{{ post.tags | join: " " }}">
+  <li class="post-list-item" data-tags="{{ post.tags | join: " " }}"{% if page.search %} data-search="{{ post.title | escape }} {{ post.description | strip_html | escape }} {{ post.tags | join: ' ' | escape }} {{ post.content | strip_html | normalize_whitespace | escape }}"{% endif %}>
     {% if post.cover_url %}
     <div class="post-item-cover" style="background-image: url('{{ post.cover_url }}')"></div>
     {% endif %}
@@ -57,3 +60,6 @@ layout: default
   </li>
   {% endfor %}
 </ul>
+{% if page.search %}
+<script src="{{ '/assets/js/article-search.js' | relative_url }}" defer></script>
+{% endif %}
