@@ -1,0 +1,47 @@
+// 1440px reference: 18px text, 46% home listing, 52% article body.
+// Smaller screens widen the reading column to keep text comfortably readable.
+@media screen and (min-width: 768px) {
+  body { font-size: clamp(16px, 1.25vw, 32px); }
+
+  .page-content > .home-wrapper { padding-left: 20%; padding-right: 20%; }
+  .page-content > .article-wrapper { padding-left: 16%; padding-right: 16%; }
+  .about-wrapper .page > p { font-size: clamp(16px, 1.111111vw, 28.444444px); }
+
+  .site-nav { margin-left: -3.555556em; margin-right: -3.555556em; }
+  .post-header { margin-top: 6.222222em; margin-bottom: 6.222222em; }
+  .post .post-header { margin-top: 4.444444em; margin-bottom: 3.555556em; }
+  .post-list-item { padding: 1.333333em 0; }
+  .articles-header .site-title, .articles-heading { margin-left: -.888889em; }
+  .articles-heading { gap: 1.777778em; flex-wrap: wrap; }
+  .article-search {
+    max-width: 100%;
+    gap: .555556em;
+    input { width: 14.583333em; padding: .555556em .694444em; }
+    input:focus { padding-bottom: calc(.555556em - 1px); }
+    svg { width: 1.388889em; height: 1.388889em; }
+  }
+  .article-pagination { margin-top: 5.333333em; gap: .333333em; }
+  .article-page-link, .article-page-gap { min-width: 2.222222em; height: 2.222222em; }
+  .post-footer { margin-top: 5.333333em; margin-bottom: 5.333333em; }
+  .post-content pre { padding: 1em; }
+  .site-footer { padding-top: 5.333333em; padding-bottom: 1.777778em; }
+  .site-footer .wrapper { max-width: none; width: 64%; padding-left: 0; padding-right: 0; }
+}
+
+@media screen and (min-width: 1024px) {
+  .page-content > .home-wrapper { padding-left: 25%; padding-right: 25%; }
+  .page-content > .article-wrapper { padding-left: 22%; padding-right: 22%; }
+}
+
+@media screen and (min-width: 1280px) {
+  .page-content > .home-wrapper { padding-left: 27%; padding-right: 27%; }
+  .page-content > .article-wrapper { padding-left: 24%; padding-right: 24%; }
+  .site-footer .wrapper { width: 46%; }
+}
+
+// A narrow viewport needs a full-width search row, even above the phone breakpoint.
+@media screen and (min-width: 481px) and (max-width: 767px) {
+  .articles-heading { flex-wrap: wrap; }
+  .article-search { width: 100%; }
+  .article-search input { flex: 1; min-width: 0; }
+}
