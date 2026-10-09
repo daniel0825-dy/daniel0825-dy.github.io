@@ -32,9 +32,17 @@ body {
   }
 }
 
-// Expand desktop article text by 30%, while keeping existing side padding.
-.article-wrapper {
-  max-width: $content-width + ($content-width - 2 * ($content-padding + $post-margin-width)) * 0.3;
+// Keep page text fluid rather than capping it at a mobile-sized width.
+.page-content > .wrapper {
+  max-width: none;
+  @media screen and (min-width: $content-width) {
+    padding-left: $spacing-unit;
+    padding-right: $spacing-unit;
+  }
+  @media screen and (min-width: 1024px) {
+    padding-left: 18%;
+    padding-right: 18%;
+  }
 }
 
 .post-content {
