@@ -1,31 +1,47 @@
-// 1440px reference: 18px text, 46% home listing, 52% article body.
+// 1440px reference: 17px text, 46% home listing, 52% article body.
 // Smaller screens widen the reading column to keep text comfortably readable.
+body { font-size: 17px; }
+.post-title { font-size: 1.7em; }
+.about-wrapper .page > p { font-size: 15.5px; }
+
 @media screen and (min-width: 768px) {
-  body { font-size: clamp(16px, 1.25vw, 32px); }
+  body { font-size: clamp(16px, calc(2.857143px + .982143vw), 28px); }
 
   .page-content > .home-wrapper { padding-left: 20%; padding-right: 20%; }
   .page-content > .article-wrapper { padding-left: 16%; padding-right: 16%; }
-  .about-wrapper .page > p { font-size: clamp(16px, 1.111111vw, 28.444444px); }
+  .about-wrapper .page > p { font-size: clamp(15.5px, calc(3.285714px + .848214vw), 25px); }
 
   .site-nav { margin-left: -3.555556em; margin-right: -3.555556em; }
-  .post-header { margin-top: 6.222222em; margin-bottom: 6.222222em; }
-  .post .post-header { margin-top: 4.444444em; margin-bottom: 3.555556em; }
-  .post-list-item { padding: 1.333333em 0; }
+  .post-header { margin-top: 5.8em; margin-bottom: 5.8em; }
+  .post .post-header { margin-top: 4.1em; margin-bottom: 3.3em; }
+  .post-list-item { padding: 1.25em 0; }
   .articles-header .site-title, .articles-heading { margin-left: -.888889em; }
   .articles-heading { gap: 1.777778em; flex-wrap: wrap; }
   .article-search {
     max-width: 100%;
     gap: .555556em;
-    input { width: 14.583333em; padding: .555556em .694444em; }
-    input:focus { padding-bottom: calc(.555556em - 1px); }
-    svg { width: 1.388889em; height: 1.388889em; }
+    input { width: 13.8em; padding: .5em .65em; }
+    input:focus { padding-bottom: calc(.5em - 1px); }
+    svg { width: 1.3em; height: 1.3em; }
   }
-  .article-pagination { margin-top: 5.333333em; gap: .333333em; }
-  .article-page-link, .article-page-gap { min-width: 2.222222em; height: 2.222222em; }
-  .post-footer { margin-top: 5.333333em; margin-bottom: 5.333333em; }
+  .article-pagination { margin-top: 5em; gap: .333333em; }
+  .article-page-link, .article-page-gap { min-width: 2.1em; height: 2.1em; }
+  .post-footer { margin-top: 5em; margin-bottom: 5em; }
   .post-content pre { padding: 1em; }
-  .site-footer { padding-top: 5.333333em; padding-bottom: 1.777778em; }
+  .site-footer { padding-top: 5em; padding-bottom: 1.6em; }
   .site-footer .wrapper { max-width: none; width: 64%; padding-left: 0; padding-right: 0; }
+}
+
+@media screen and (max-width: 767px) {
+  .post-title { font-size: 1.5em; }
+  .post-content { font-size: 16px; }
+  .post-header { margin-top: 96px; margin-bottom: 96px; }
+  .post .post-header { margin-top: 44px; margin-bottom: 36px; }
+  .post-list-item { padding: 22px 0; }
+  .article-search svg { width: 18px; height: 18px; }
+  .article-pagination { margin-top: 88px; }
+  .article-page-link, .article-page-gap { min-width: 30px; height: 30px; }
+  .site-footer { padding-top: 88px; padding-bottom: 30px; }
 }
 
 @media screen and (min-width: 1024px) {
