@@ -45,6 +45,14 @@ body {
   }
 }
 
+// Only the main article listing uses half of the desktop layout width.
+@media screen and (min-width: 1024px) {
+  .page-content > .home-wrapper {
+    padding-left: 25%;
+    padding-right: 25%;
+  }
+}
+
 .post-content {
   overflow-wrap: anywhere;
 

@@ -5,7 +5,7 @@ layout: blank
 <body>
 
   <main class="page-content" aria-label="Content">
-    <div class="wrapper{% if page.layout == 'post' %} article-wrapper{% endif %}{% if page.path == 'about.md' %} about-wrapper{% endif %}">
+    <div class="wrapper{% if page.layout == 'post' %} article-wrapper{% endif %}{% if page.path == 'about.md' %} about-wrapper{% endif %}{% if page.path == 'index.md' %} home-wrapper{% endif %}">
       {% include site-nav.html %}
       {{ content }}
     </div>
