@@ -1,4 +1,4 @@
-// 1440px reference: 17px text, 46% home listing, 52% article body.
+// 1440px reference: 16px text, 46% home listing, 52% article body.
 // Smaller screens widen the reading column to keep text comfortably readable.
 body { font-size: 17px; }
 .post-title { font-size: 1.7em; }
@@ -45,6 +45,11 @@ body { font-size: 17px; }
 }
 
 @media screen and (min-width: 1024px) {
+  // Keep tablet sizing; grow more gently on wide desktop viewports.
+  body { font-size: clamp(16px, calc(8.285714px + .535714vw), 22px); }
+  .post-title { font-size: 1.6em; }
+  .post-item-link { font-size: 1.15em; }
+  .about-wrapper .page > p { font-size: clamp(15.5px, calc(9.714286px + .401786vw), 20px); }
   .page-content > .home-wrapper { padding-left: 25%; padding-right: 25%; }
   .page-content > .article-wrapper { padding-left: 22%; padding-right: 22%; }
 }
