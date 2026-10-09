@@ -1,7 +1,6 @@
 // 1440px reference: 16px text, 46% home listing, 52% article body.
 // Smaller screens widen the reading column to keep text comfortably readable.
 :root { --site-nav-height: clamp(44px, 3em, 66px); }
-html { scroll-padding-top: calc(var(--site-nav-height) + 16px); }
 body { font-size: 17px; }
 .post-title { font-size: 1.7em; }
 .about-wrapper .page > p { font-size: 15.5px; }
@@ -69,9 +68,9 @@ body { font-size: 17px; }
   .article-search input { flex: 1; min-width: 0; }
 }
 
-// The shared menu stays visible on every page, including at the footer.
-body { padding-top: var(--site-nav-height); }
-.site-nav {
+// Only article pages keep the menu visible while scrolling.
+.article-page { padding-top: var(--site-nav-height); }
+.article-page .site-nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -86,9 +85,8 @@ body { padding-top: var(--site-nav-height); }
   background: $background-color;
   border-bottom: 1px solid $border-color;
 }
-.site-nav .page-link { display: flex; align-items: center; min-height: 44px; }
-.post-content h1, .post-content h2, .post-content h3,
-.post-content h4, .post-content h5, .post-content h6 { scroll-margin-top: 16px; }
+.article-page .site-nav .page-link { display: flex; align-items: center; min-height: 44px; }
+.article-page .post-content [id] { scroll-margin-top: calc(var(--site-nav-height) + 16px); }
 @media screen and (min-width: 768px) {
-  .site-nav { justify-content: flex-end; padding-right: 8%; }
+  .article-page .site-nav { justify-content: flex-end; padding-right: 8%; }
 }
