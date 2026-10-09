@@ -1,16 +1,23 @@
 ---
 layout: page
 title: About
-lang: en
-cover_url: https://s2.banana.moe/unsplash_colle/amador-loureiro-779.jpg
-cover_meta: >
-  Photo by [Amador Loureiro](https://unsplash.com/@amadorloureiroblanco)
+lang: ko
 navbar: true
 position: 100
 ---
 
-Kagami is a simple and clean theme for Jekyll and GitHub Pages.
+이 블로그는 공부한 내용을 단순히 기록하는 것이 아닌, 아이디어를 논리화하여 발전시키고 발전 시킨 아이디어를 기록하기 위해 만든 공간입니다.
 
-The theme was firstly designed for <https://banana.moe> in late 2016 and have it's first release in March 2017 with a whole bunch of big changes in both design and implementation.
+주로 반도체와 각종 산업과 기술을 비롯한 기업 및 투자 분석, 새로운 아이디어와 가설을 다룹니다. 주제에서 질문혹은 아이디어 맵을 펼쳐 질문과 아이디어에 대한 저의 관점과 논리를 펼치는 것이 목표입니다.
 
-Visit [project home](https://github.com/kamikat/jekyll-theme-kagami) for source code and installation guides.
+이 블로그의 글의 형태는 문답형식 , 독후감, flow of thoughts 차트 , 칼럼등의 형식으로 글을 정리 할것 입니다.
+
+블로그의 글과 분석은 "김도연(Dany)"이 작성합니다.
+
+현재 반도체 설계를 공부하고 있으며, 반도체·AI와 같은 기술 분야뿐만 아니라 산업 구조, 기업, 다양한 주제에 관심을 가지고 있습니다. 서로 다른 기술과 산업의 변화를 연결하여 이해하고, 그 과정에서 만들어지는 아이디어와 논리를 만들고 기록하는 것을 목표로 합니다.
+
+본 블로그는 MIT License에 따라 공개된 "Kagami"의 Jekyll 테마를 기반으로 제작되었습니다. 원본 테마의 저작권은 "kamikat"에게 있으며, 테마의 사용 및 수정은 MIT License의 조건을 따릅니다.
+
+별도의 표기가 없는 한, 본 블로그에 게시된 글, 분석, 보고서 및 직접 제작한 콘텐츠의 저작권은 "김도연(Dany)"에게 있습니다.
+
+외부 자료와 이미지의 저작권은 각각의 원 저작자에게 있으며, 해당 자료의 이용 조건을 준수합니다.
